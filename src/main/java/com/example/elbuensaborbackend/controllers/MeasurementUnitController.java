@@ -1,7 +1,7 @@
 package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.entities.MeasurementUnit;
-import com.example.elbuensaborbackend.services.MeasurementUnitServiceImpl;
+import com.example.elbuensaborbackend.services.Implementation.MeasurementUnitServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
