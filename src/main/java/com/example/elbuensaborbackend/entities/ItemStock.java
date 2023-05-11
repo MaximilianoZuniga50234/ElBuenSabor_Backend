@@ -20,7 +20,7 @@ public class ItemStock extends Base{
     private boolean leaveStatus;
 
     @ManyToOne()
-    @JoinColumn(name = "fatherId")
+    @JoinColumn(name = "father_id")
     private ItemStock fatherId;
 
 }
