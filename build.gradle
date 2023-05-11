@@ -25,9 +25,13 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation group: 'org.hibernate', name: 'hibernate-core', version: '6.2.2.Final', ext: 'pom'
-    implementation group: "mysql", name: "mysql-connector-java", version:"8.0.33"
+    implementation group: "mysql", name: "mysql-connector-java", version: "8.0.33"
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+bootJar {
+    enabled = true
 }
