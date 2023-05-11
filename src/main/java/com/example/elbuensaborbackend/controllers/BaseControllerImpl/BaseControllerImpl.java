@@ -16,25 +16,10 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
     @Autowired
     protected S service;
 
-    @Value("${paged.size}")
-    private int pagedSize;
-
     @GetMapping("")
     public ResponseEntity<?> getAll(){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"");
-
-        }
-    }
-
-    @GetMapping("/paged/{page}")
-    public ResponseEntity<?> getAll(@PathVariable Integer page){
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(service.findAll(PageRequest.of(page,
-                    pagedSize,
-                    Sort.by(Sort.Direction.DESC, "id"))));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"");
 

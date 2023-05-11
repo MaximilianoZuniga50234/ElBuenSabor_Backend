@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public abstract class MeasurementUnitServiceImpl extends BaseServiceImpl<MeasurementUnit, Long> implements MeasurementUnitService {
+public class MeasurementUnitServiceImpl extends BaseServiceImpl<MeasurementUnit, Long> implements MeasurementUnitService {
 
     @Autowired
     private MeasurementUnitRepository measurementUnitRepository;

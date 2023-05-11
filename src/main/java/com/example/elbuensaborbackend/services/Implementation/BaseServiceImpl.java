@@ -34,22 +34,6 @@ public abstract class BaseServiceImpl <E extends Base, ID extends Serializable> 
 
     @Override
     @Transactional
-    public Page<E> findAll(Pageable pageable) throws Exception{
-        try{
-            List<E> entities = repository.findAll();
-            int start  =(int) pageable.getOffset();
-            int end = Math.min((start + pageable.getPageSize()), entities.size());
-
-            Page<E> page = new PageImpl<>(entities.subList(start,end), pageable,entities.size());
-
-            return page;
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
-    }
-
-    @Override
-    @Transactional
     public E findById(ID id) throws Exception {
         try{
             Optional<E> optional = repository.findById(id);
