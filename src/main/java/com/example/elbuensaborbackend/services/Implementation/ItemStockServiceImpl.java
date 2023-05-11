@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ItemStockServiceImpl extends BaseServiceImpl<ItemStock, Long> implements ItemStockService {
+public abstract class ItemStockServiceImpl extends BaseServiceImpl<ItemStock, Long> implements ItemStockService {
 
     @Autowired
     private ItemStockRepository itemStockRepository;
