@@ -43,6 +43,6 @@ public class Product extends Base {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "product_orderDetail", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "orderDetail_id"))
-    private List<OrderDetail> orderDetails = new ArrayList<>();
+    private List<PurchaseOrderDetail> purchaseOrderDetails = new ArrayList<>();
 
 }

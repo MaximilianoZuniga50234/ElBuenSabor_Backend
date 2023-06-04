@@ -11,12 +11,12 @@ import java.sql.Time;
 import java.util.Date;
 
 @Entity
-@Table(name = "order")
+@Table(name = "purchase_order")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order extends Base {
+public class PurchaseOrder extends Base {
 
     @Column(name = "fecha")
     private Date fecha;

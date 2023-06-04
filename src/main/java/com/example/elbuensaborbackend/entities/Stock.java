@@ -51,5 +51,5 @@ public class Stock extends Base {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "stock_orderDetail", joinColumns = @JoinColumn(name = "stock_id"), inverseJoinColumns = @JoinColumn(name = "orderDetail_id"))
-    private List<OrderDetail> orderDetails = new ArrayList<>();
+    private List<PurchaseOrderDetail> purchaseOrderDetails = new ArrayList<>();
 }
