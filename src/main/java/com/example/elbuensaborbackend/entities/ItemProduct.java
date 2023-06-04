@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "articuloInsumo")
+@Table(name = "itemProduct")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticuloInsumo extends Base {
+public class ItemProduct extends Base {
     @Column(name="denomination")
     private String denomination;
 
