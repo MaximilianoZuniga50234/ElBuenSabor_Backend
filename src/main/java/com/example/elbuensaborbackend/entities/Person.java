@@ -22,7 +22,7 @@ public class Person extends Base {
     @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private long phoneNumber;
 
     @Column(name = "email")

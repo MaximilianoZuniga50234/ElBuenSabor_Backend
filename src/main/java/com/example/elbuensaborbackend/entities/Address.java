@@ -1,8 +1,6 @@
 package com.example.elbuensaborbackend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +20,12 @@ public class Address extends Base {
     @Column(name = "number")
     private int number;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "department_id")
+    private Department departmentId;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "person_id")
+    private Person personId;
 
 }

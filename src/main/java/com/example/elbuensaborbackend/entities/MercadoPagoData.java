@@ -11,26 +11,26 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "mercadoPagoData")
+@Table(name = "mercado_pago_data")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class MercadoPagoData extends Base {
 
-    @Column(name = "paymentIdentifier")
+    @Column(name = "payment_identifier")
     private long paymentIdentifier;
 
-    @Column(name = "creationDate")
+    @Column(name = "creation_date")
     private Date creatioDate;
 
-    @Column(name = "approvalDate")
+    @Column(name = "approval_date")
     private Date approvalDate;
 
-    @Column(name = "paymentMethod")
+    @Column(name = "payment_method")
     private String paymentMehod;
 
-    @Column(name = "cardNumber")
+    @Column(name = "card_number")
     private String cardNumber;
 
     @Column(name = "state")

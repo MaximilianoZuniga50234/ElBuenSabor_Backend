@@ -24,16 +24,16 @@ public class Invoice extends Base {
     @Column(name = "number")
     private long number;
 
-    @Column(name = "discountAmount")
+    @Column(name = "discount_amount")
     private double discountAmount;
 
-    @Column(name = "paymentMethod")
+    @Column(name = "payment_method")
     private String paymentMethod;
 
-    @Column(name = "totalSale")
+    @Column(name = "total_sale")
     private double totalSale;
 
-    @Column(name = "totalCost")
+    @Column(name = "total_cost")
     private double totalCost;
 
 }

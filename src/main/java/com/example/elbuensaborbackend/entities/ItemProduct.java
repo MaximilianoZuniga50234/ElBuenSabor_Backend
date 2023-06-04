@@ -9,30 +9,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "itemProduct")
+@Table(name = "item_product")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemProduct extends Base {
-    @Column(name="denomination")
+
+    @Column(name = "denomination")
     private String denomination;
-
-    @Column(name="purchasePrice")
-    private double purchasePrice;
-
-    @Column(name="salePrice")
-    private double salePrice;
-
-    @Column(name="currentStock")
-    private double currentStock;
-
-    @Column(name="minimumStock")
-    private double minimumStock;
-
-    @Column(name="esInsumo")
-    private boolean esInsumo;
 
     @Column(name = "leave_status")
     private boolean leaveStatus;
+
 }

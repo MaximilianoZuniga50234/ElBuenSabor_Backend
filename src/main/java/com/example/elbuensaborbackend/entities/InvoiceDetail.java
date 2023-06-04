@@ -1,15 +1,13 @@
 package com.example.elbuensaborbackend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "invoiceDetail")
+@Table(name = "invoice_detail")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -21,4 +19,8 @@ public class InvoiceDetail extends Base {
 
     @Column(name = "subtotal")
     private double subtotal;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "invoice_id")
+    private Invoice invoiceId;
 }

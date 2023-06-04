@@ -1,29 +1,27 @@
 package com.example.elbuensaborbackend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "manufacturedItem")
+@Table(name = "product")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ManufacturedItem extends Base {
+public class Product extends Base {
 
 
-    @Column(name = "estimatedTimeKitchen")
+    @Column(name = "estimated_time_kitchen")
     private int estimatedTimeKitchen;
 
     @Column(name = "denomination")
     private String denomination;
 
-    @Column(name = "salePrice")
+    @Column(name = "sale_price")
     private double salePrice;
 
     @Column(name = "image")
@@ -31,4 +29,8 @@ public class ManufacturedItem extends Base {
 
     @Column(name = "leave_status")
     private boolean leaveStatus;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "itemProduct_id")
+    private ItemProduct itemProductId;
 }

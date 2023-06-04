@@ -7,20 +7,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "order_detail")
+@Table(name = "product_detail")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDetail extends Base {
+public class ProductDetail extends Base {
 
     @Column(name = "amount")
-    private int amount;
-
-    @Column(name = "subtotal")
-    private double subtotal;
+    private double amount;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "order_id")
-    private Order orderId;
+    @JoinColumn(name = "stock_id")
+    private Stock stock;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id")
+    private Product productId;
+
 }
