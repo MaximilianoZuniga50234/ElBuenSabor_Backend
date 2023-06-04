@@ -1,26 +1,21 @@
 package com.example.elbuensaborbackend.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "item_stock")
+@Table(name = "department")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemStock extends Base {
+public class Department extends Base {
+
     @Column(name = "name")
     private String name;
-
-    @Column(name = "leave_status")
-    private boolean leaveStatus;
-
-    @ManyToOne()
-    @JoinColumn(name = "father_id")
-    private ItemStock fatherId;
-
 }

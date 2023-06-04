@@ -9,17 +9,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "measurement_unit")
+@Table(name = "person")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MeasurementUnit extends Base {
+public class Person extends Base {
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "leave_status")
-    private boolean leaveStatus;
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "phoneNumber")
+    private long phoneNumber;
+
+    @Column(name = "email")
+    private String email;
 
 }
