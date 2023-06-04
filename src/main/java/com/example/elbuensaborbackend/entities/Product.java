@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "product")
 @Setter
@@ -33,4 +36,13 @@ public class Product extends Base {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "itemProduct_id")
     private ItemProduct itemProductId;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "product_invoiceDetail", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "invoiceDetail_id"))
+    private List<InvoiceDetail> invoiceDetails = new ArrayList<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "product_orderDetail", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "orderDetail_id"))
+    private List<OrderDetail> orderDetails = new ArrayList<>();
+
 }

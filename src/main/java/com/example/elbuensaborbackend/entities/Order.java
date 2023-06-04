@@ -33,7 +33,7 @@ public class Order extends Base {
     @Column(name = "total")
     private double total;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private Address addressId;
 
@@ -45,9 +45,8 @@ public class Order extends Base {
     @JoinColumn(name = "state_id")
     private State stateId;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "invoice_id")
     private Invoice invoiceId;
-
 
 }

@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "stock")
 @Setter
@@ -41,4 +44,12 @@ public class Stock extends Base {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "itemStock_id")
     private ItemStock itemStockId;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "stock_invoiceDetail", joinColumns = @JoinColumn(name = "stock_id"), inverseJoinColumns = @JoinColumn(name = "invoiceDetail_id"))
+    private List<InvoiceDetail> invoiceDetails = new ArrayList<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "stock_orderDetail", joinColumns = @JoinColumn(name = "stock_id"), inverseJoinColumns = @JoinColumn(name = "orderDetail_id"))
+    private List<OrderDetail> orderDetails = new ArrayList<>();
 }

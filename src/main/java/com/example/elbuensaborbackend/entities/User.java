@@ -20,7 +20,7 @@ public class User extends Base {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id")
     private Person personId;
 
