@@ -6,6 +6,7 @@ Desarrollado en Java-SpringBoot
 
 Requisitos:
 	
+	-Instalar Java 11 o 17.
 	-Instalar plugin de SpringBoot y Lombok.
   	-Instalar algún IDE que soporte Java y SpringBoot (Intellij Idea, SpringToolSuite, etc.).
 
