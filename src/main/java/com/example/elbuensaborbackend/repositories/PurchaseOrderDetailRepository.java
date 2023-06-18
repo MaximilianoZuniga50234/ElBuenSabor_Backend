@@ -1,4 +1,8 @@
 package com.example.elbuensaborbackend.repositories;
 
-public interface PurchaseOrderDetailRepository {
+import com.example.elbuensaborbackend.entities.PurchaseOrderDetail;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PurchaseOrderDetailRepository extends BaseRepository<PurchaseOrderDetail, Long>{
 }

@@ -1,4 +1,8 @@
 package com.example.elbuensaborbackend.repositories;
 
-public interface InvoiceDetailRepository {
+import com.example.elbuensaborbackend.entities.InvoiceDetail;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface InvoiceDetailRepository extends BaseRepository<InvoiceDetail, Long>{
 }

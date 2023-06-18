@@ -1,4 +1,8 @@
 package com.example.elbuensaborbackend.repositories;
 
-public interface ProductRepository {
+import com.example.elbuensaborbackend.entities.Product;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProductRepository extends BaseRepository<Product, Long>{
 }

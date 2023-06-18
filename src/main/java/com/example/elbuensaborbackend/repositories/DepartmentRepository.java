@@ -1,4 +1,8 @@
 package com.example.elbuensaborbackend.repositories;
 
-public interface DepartmentRepository {
+import com.example.elbuensaborbackend.entities.Department;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface DepartmentRepository extends BaseRepository<Department, Long>{
 }

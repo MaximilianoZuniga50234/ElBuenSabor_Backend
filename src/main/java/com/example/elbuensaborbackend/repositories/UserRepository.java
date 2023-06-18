@@ -1,4 +1,8 @@
 package com.example.elbuensaborbackend.repositories;
 
-public interface UserRepository {
+import com.example.elbuensaborbackend.entities.User;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends BaseRepository<User, Long>{
 }

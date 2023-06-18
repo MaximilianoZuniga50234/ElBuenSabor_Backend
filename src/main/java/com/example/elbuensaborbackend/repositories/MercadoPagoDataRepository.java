@@ -1,4 +1,8 @@
 package com.example.elbuensaborbackend.repositories;
 
-public interface MercadoPagoDataRepository {
+import com.example.elbuensaborbackend.entities.MercadoPagoData;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MercadoPagoDataRepository extends BaseRepository<MercadoPagoData, Long>{
 }
