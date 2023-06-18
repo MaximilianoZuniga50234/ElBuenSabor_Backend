@@ -27,6 +27,9 @@ public class Product extends Base {
     @Column(name = "sale_price")
     private double salePrice;
 
+    @Column(name = "discount_percentaje")
+    private double discountPercentaje;
+
     @Column(name = "image")
     private String image;
 

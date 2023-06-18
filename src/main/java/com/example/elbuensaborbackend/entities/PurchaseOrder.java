@@ -30,6 +30,9 @@ public class PurchaseOrder extends Base {
     @Column(name = "shipping_type")
     private String shippingType;
 
+    @Column(name = "payment_method")
+    private String paymentMethod;
+
     @Column(name = "total")
     private double total;
 
