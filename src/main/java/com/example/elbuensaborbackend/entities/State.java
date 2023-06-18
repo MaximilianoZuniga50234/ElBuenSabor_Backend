@@ -9,17 +9,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "measurement_unit")
+@Table(name = "state")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MeasurementUnit extends Base {
+public class State extends Base {
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "leave_status")
-    private boolean leaveStatus;
-
+    @Column(name = "state")
+    private String state;
 }
