@@ -5,7 +5,9 @@ import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.UserRepository;
 import com.example.elbuensaborbackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl extends BaseServiceImpl<User, Long> implements UserService {
 
     @Autowired

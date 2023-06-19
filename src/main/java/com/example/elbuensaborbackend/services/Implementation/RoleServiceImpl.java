@@ -5,7 +5,9 @@ import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.RoleRepository;
 import com.example.elbuensaborbackend.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RoleServiceImpl extends BaseServiceImpl<Role, Long> implements RoleService {
 
     @Autowired

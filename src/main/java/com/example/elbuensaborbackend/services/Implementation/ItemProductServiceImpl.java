@@ -5,7 +5,9 @@ import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.ItemProductRepository;
 import com.example.elbuensaborbackend.services.ItemProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ItemProductServiceImpl extends BaseServiceImpl<ItemProduct, Long> implements ItemProductService {
 
     @Autowired
