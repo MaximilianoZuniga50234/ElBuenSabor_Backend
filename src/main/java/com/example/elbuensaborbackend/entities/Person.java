@@ -23,7 +23,7 @@ public class Person extends Base {
     private String lastName;
 
     @Column(name = "phone_number")
-    private long phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "email")
     private String email;
