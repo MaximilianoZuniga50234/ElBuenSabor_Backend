@@ -19,9 +19,6 @@ public class Invoice extends Base {
     @Column(name = "date")
     private Date date;
 
-    @Column(name = "number")
-    private long number;
-
     @Column(name = "discount_amount")
     private double discountAmount;
 
