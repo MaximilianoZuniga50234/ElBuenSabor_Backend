@@ -48,8 +48,6 @@ public class PurchaseOrder extends Base {
     @JoinColumn(name = "state_id")
     private State stateId;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "invoice_id")
-    private Invoice invoiceId;
+
 
 }
