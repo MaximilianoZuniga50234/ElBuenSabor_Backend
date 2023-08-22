@@ -1,5 +1,6 @@
 package com.example.elbuensaborbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,8 +22,9 @@ public class ProductDetail extends Base {
     @JoinColumn(name = "stock_id")
     private Stock stock;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product productId;
+    @JsonBackReference
+    private Product product;
 
 }

@@ -22,10 +22,10 @@ public class Address extends Base {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "department_id")
-    private Department departmentId;
+    private Department department;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id")
-    private Person personId;
+    private Person person;
 
 }

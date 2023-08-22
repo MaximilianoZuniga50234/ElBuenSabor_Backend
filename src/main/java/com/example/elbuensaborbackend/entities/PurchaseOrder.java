@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "purchase_order")
@@ -38,16 +40,17 @@ public class PurchaseOrder extends Base {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
-    private Address addressId;
+    private Address address;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id")
-    private Person personId;
+    private Person person;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "state_id")
-    private State stateId;
+    private State state;
 
-
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PurchaseOrderDetail> details = new ArrayList<>();
 
 }

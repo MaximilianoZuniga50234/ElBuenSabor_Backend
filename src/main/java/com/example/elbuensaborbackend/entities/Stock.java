@@ -34,22 +34,14 @@ public class Stock extends Base {
     @Column(name = "is_stock")
     private boolean isStock;
 
-    @Column(name = "leave_status")
-    private boolean leaveStatus;
+    @Column(name = "active")
+    private boolean active;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "measurementUnit_id")
-    private MeasurementUnit measurementUnitId;
+    private MeasurementUnit measurementUnit;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "itemStock_id")
-    private ItemStock itemStockId;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "stock_invoiceDetail", joinColumns = @JoinColumn(name = "stock_id"), inverseJoinColumns = @JoinColumn(name = "invoiceDetail_id"))
-    private List<InvoiceDetail> invoiceDetails = new ArrayList<>();
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "stock_orderDetail", joinColumns = @JoinColumn(name = "stock_id"), inverseJoinColumns = @JoinColumn(name = "orderDetail_id"))
-    private List<PurchaseOrderDetail> purchaseOrderDetails = new ArrayList<>();
+    private ItemStock itemStock;
 }

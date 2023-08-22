@@ -22,10 +22,10 @@ public class User extends Base {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id")
-    private Person personId;
+    private Person person;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "role_id")
-    private Role roleId;
+    private Role role;
 
 }

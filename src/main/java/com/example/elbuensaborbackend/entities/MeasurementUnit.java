@@ -19,7 +19,7 @@ public class MeasurementUnit extends Base {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "leave_status")
-    private boolean leaveStatus;
+    @Column(name = "active")
+    private boolean active;
 
 }

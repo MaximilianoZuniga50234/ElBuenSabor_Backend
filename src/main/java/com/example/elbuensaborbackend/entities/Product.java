@@ -1,5 +1,6 @@
 package com.example.elbuensaborbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,19 +34,15 @@ public class Product extends Base {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "leave_status")
-    private boolean leaveStatus;
+    @Column(name = "active")
+    private boolean active;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "itemProduct_id")
-    private ItemProduct itemProductId;
+    private ItemProduct itemProduct;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "product_invoiceDetail", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "invoiceDetail_id"))
-    private List<InvoiceDetail> invoiceDetails = new ArrayList<>();
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "product_orderDetail", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "orderDetail_id"))
-    private List<PurchaseOrderDetail> purchaseOrderDetails = new ArrayList<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<ProductDetail> details = new ArrayList<>();
 
 }

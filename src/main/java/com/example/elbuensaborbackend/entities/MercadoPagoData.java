@@ -35,8 +35,4 @@ public class MercadoPagoData extends Base {
 
     @Column(name = "state")
     private String state;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "mercadoPagoData_invoice", joinColumns = @JoinColumn(name = "mercadoPagoData_id"), inverseJoinColumns = @JoinColumn(name = "invoice_id"))
-    private List<Invoice> invoices = new ArrayList<>();
 }
