@@ -20,7 +20,15 @@ public class PurchaseOrderDetail extends Base {
     @Column(name = "subtotal")
     private double subtotal;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "order_id")
-    private PurchaseOrder orderId;
+    private PurchaseOrder order;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "stock_id")
+    private Stock stock;
 }

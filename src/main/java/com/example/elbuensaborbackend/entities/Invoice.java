@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "invoice")
@@ -35,4 +37,10 @@ public class Invoice extends Base {
     @JoinColumn(name = "purchase_order_id")
     private PurchaseOrder purchaseOrder;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "mercado_pago_data_id")
+    private MercadoPagoData mercadoPagoData;
+
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<InvoiceDetail> details = new ArrayList<>();
 }

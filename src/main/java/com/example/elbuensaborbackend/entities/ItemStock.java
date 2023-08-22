@@ -1,10 +1,15 @@
 package com.example.elbuensaborbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "item_stock")
@@ -12,15 +17,16 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class ItemStock extends Base {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "leave_status")
-    private boolean leaveStatus;
+    @Column(name = "active")
+    private boolean active;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "father_id")
-    private ItemStock fatherId;
+    private ItemStock father;
 
 }

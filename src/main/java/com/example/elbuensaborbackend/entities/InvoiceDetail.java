@@ -20,7 +20,15 @@ public class InvoiceDetail extends Base {
     @Column(name = "subtotal")
     private double subtotal;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "invoice_id")
-    private Invoice invoiceId;
+    private Invoice invoice;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "stock_id")
+    private Stock stock;
 }

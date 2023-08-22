@@ -19,7 +19,7 @@ public class ItemProduct extends Base {
     @Column(name = "denomination")
     private String denomination;
 
-    @Column(name = "leave_status")
-    private boolean leaveStatus;
+    @Column(name = "active")
+    private boolean active;
 
 }
