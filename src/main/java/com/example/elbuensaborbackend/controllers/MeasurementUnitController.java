@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/v1/measurementUnits")
+@RequestMapping("/api/v1/measurementUnit")
 public class MeasurementUnitController extends BaseControllerImpl<MeasurementUnit, MeasurementUnitServiceImpl> {
 
 }

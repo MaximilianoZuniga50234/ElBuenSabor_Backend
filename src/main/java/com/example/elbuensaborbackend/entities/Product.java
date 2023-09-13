@@ -18,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Product extends Base {
 
-
     @Column(name = "estimated_time_kitchen")
     private int estimatedTimeKitchen;
 
@@ -31,8 +30,11 @@ public class Product extends Base {
     @Column(name = "discount_percentaje")
     private double discountPercentaje;
 
-    @Column(name = "image")
-    private String image;
+    @Column(name = "image_url")
+    private String imgUrl;
+
+    @Column(name = "image_id")
+    private String imgId;
 
     @Column(name = "active")
     private boolean active;
@@ -41,7 +43,7 @@ public class Product extends Base {
     @JoinColumn(name = "itemProduct_id")
     private ItemProduct itemProduct;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<ProductDetail> details = new ArrayList<>();
 

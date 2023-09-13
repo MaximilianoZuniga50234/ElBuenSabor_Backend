@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +26,7 @@ public class PurchaseOrder extends Base {
     private int number;
 
     @Column(name = "estimated_end_time")
-    private Time estimatedEndTime;
+    private double estimatedEndTime;
 
     @Column(name = "shipping_type")
     private String shippingType;
@@ -50,7 +49,7 @@ public class PurchaseOrder extends Base {
     @JoinColumn(name = "state_id")
     private State state;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<PurchaseOrderDetail> details = new ArrayList<>();
 
 }
