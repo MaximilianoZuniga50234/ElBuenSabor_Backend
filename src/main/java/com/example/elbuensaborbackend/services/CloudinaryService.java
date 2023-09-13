@@ -16,7 +16,7 @@ public class CloudinaryService {
 
     Cloudinary cloudinary;
 
-    private Map<String, String> valuesMap = new HashMap<>();
+    private final Map<String, String> valuesMap = new HashMap<>();
 
     public CloudinaryService(){
         valuesMap.put("cloud_name", "dycogxoko");
@@ -25,16 +25,15 @@ public class CloudinaryService {
         cloudinary = new Cloudinary(valuesMap);
     }
 
-    public Map upload(MultipartFile multipartFile) throws IOException {
+    public Map<String, ?> upload(MultipartFile multipartFile) throws IOException {
         File file = convert(multipartFile);
-        Map result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+        Map<String, ?> result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
         file.delete();
         return result;
     }
 
-    public Map delete(String id) throws IOException {
-        Map result = cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
-        return result;
+    public Map<String, String> delete(String id) throws IOException {
+        return (Map<String, String>) cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
     }
 
     private File convert(MultipartFile multipartFile) throws IOException {

@@ -2,6 +2,7 @@ package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.controllers.BaseControllerImpl.BaseControllerImpl;
 import com.example.elbuensaborbackend.entities.Product;
+import com.example.elbuensaborbackend.services.CloudinaryService;
 import com.example.elbuensaborbackend.services.Implementation.ProductServiceImpl;
 import com.example.elbuensaborbackend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -18,11 +21,24 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
     @Autowired
     ProductService productService;
 
+    @Autowired
+    CloudinaryService cloudinaryService;
+
     @PostMapping("/create")
     public ResponseEntity<?> saveWithImage(@RequestPart("product") Product product,
                                            @RequestPart("image") MultipartFile image){
         try{
-            return ResponseEntity.status(HttpStatus.OK).body(productService.saveWithImage(product));
+            return ResponseEntity.status(HttpStatus.OK).body(productService.saveWithImage(product, image));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteWithImage(@PathVariable Long id){
+        try{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(productService.deleteWithImage(id));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("{\"error\":\"Error, por favor intente nuevamente...\"");

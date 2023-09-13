@@ -30,8 +30,11 @@ public class Product extends Base {
     @Column(name = "discount_percentaje")
     private double discountPercentaje;
 
-    @Column(name = "image")
-    private String image;
+    @Column(name = "image_url")
+    private String imgUrl;
+
+    @Column(name = "image_id")
+    private String imgId;
 
     @Column(name = "active")
     private boolean active;
