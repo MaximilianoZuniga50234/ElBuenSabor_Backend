@@ -18,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Product extends Base {
 
-
     @Column(name = "estimated_time_kitchen")
     private int estimatedTimeKitchen;
 
@@ -41,7 +40,7 @@ public class Product extends Base {
     @JoinColumn(name = "itemProduct_id")
     private ItemProduct itemProduct;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<ProductDetail> details = new ArrayList<>();
 

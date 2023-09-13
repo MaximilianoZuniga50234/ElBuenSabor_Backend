@@ -6,6 +6,7 @@ import com.example.elbuensaborbackend.repositories.ProductRepository;
 import com.example.elbuensaborbackend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implements ProductService {
@@ -15,6 +16,17 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
 
     public ProductServiceImpl(BaseRepository<Product, Long> productRepository) {
         super(productRepository);
+    }
+
+    @Override
+    @Transactional
+    public Product saveWithImage(Product product) throws Exception {
+        try{
+            product = productRepository.save(product);
+            return product;
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
 }
