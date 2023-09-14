@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.swing.text.html.Option;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implements ProductService {
@@ -23,30 +25,55 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
     public ProductServiceImpl(BaseRepository<Product, Long> productRepository) {
         super(productRepository);
     }
+
     @Transactional
-    public Product saveWithImage(Product product, MultipartFile image) throws Exception {
-        try{
-            Map<String, ?> result = cloudinaryService.upload(image);
-            product.setImgUrl(result.get("secure_url").toString());
-            product.setImgId(result.get("public_id").toString());
+    public Product saveWithImage(Product product, Optional<MultipartFile> image) throws Exception {
+        try {
+            if (image.isPresent()) {
+                Map<String, ?> result = cloudinaryService.upload(image.get());
+                product.setImgUrl(result.get("secure_url").toString());
+                product.setImgId(result.get("public_id").toString());
+            }
             product = productRepository.save(product);
             return product;
-        }catch (Exception e){
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Transactional
+    public Product updateWithImage(Product product, Optional<MultipartFile> image, Long id) throws Exception {
+        try {
+            Optional<Product> oldProduct = productRepository.findById(id);
+            if (oldProduct.isEmpty()) {
+                throw new Exception("No se encontró el producto con el id: " + id);
+            }
+            if (image.isPresent()) {
+                Map<String, ?> result = cloudinaryService.upload(image.get());
+                product.setImgUrl(result.get("secure_url").toString());
+                product.setImgId(result.get("public_id").toString());
+            }
+            Product existingProduct = oldProduct.get();
+            product.setId(existingProduct.getId());
+            existingProduct = product;
+            return productRepository.save(existingProduct);
+
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
 
     @Transactional
     public boolean deleteWithImage(Long id) throws Exception {
-        try{
-            if(productRepository.existsById(id)) {
+        try {
+            if (productRepository.existsById(id)) {
                 cloudinaryService.delete(productRepository.findById(id).get().getImgId());
                 productRepository.deleteById(id);
                 return true;
-            }else{
+            } else {
                 throw new Exception("El producto no existe");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }

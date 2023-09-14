@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/product")
-public class ProductController extends BaseControllerImpl<Product, ProductServiceImpl>{
+public class ProductController extends BaseControllerImpl<Product, ProductServiceImpl> {
 
     @Autowired
     ProductService productService;
@@ -26,22 +27,34 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
 
     @PostMapping("/create")
     public ResponseEntity<?> saveWithImage(@RequestPart("product") Product product,
-                                           @RequestPart("image") MultipartFile image){
-        try{
+                                           @RequestPart(value = "image", required = false) Optional<MultipartFile> image) {
+        try {
             return ResponseEntity.status(HttpStatus.OK).body(productService.saveWithImage(product, image));
-        }catch (Exception e){
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateWithImage(@RequestPart("product") Product product,
+                                             @RequestParam(value = "image", required = false) Optional<MultipartFile> image,
+                                             @PathVariable Long id) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.updateWithImage(product, image, id));
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteWithImage(@PathVariable Long id){
-        try{
+    public ResponseEntity<?> deleteWithImage(@PathVariable Long id) {
+        try {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(productService.deleteWithImage(id));
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("{\"error\":\"Error, por favor intente nuevamente...\"");
+                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
     }
 
