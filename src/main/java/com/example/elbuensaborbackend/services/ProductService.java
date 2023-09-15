@@ -9,4 +9,5 @@ public interface ProductService extends BaseService<Product,Long>{
     Product saveWithImage(Product product, Optional<MultipartFile> image) throws Exception;
     Product updateWithImage(Product product, Optional<MultipartFile> image, Long id) throws Exception;
     boolean deleteWithImage(Long id) throws Exception;
+    boolean leave(Long id) throws Exception;
 }

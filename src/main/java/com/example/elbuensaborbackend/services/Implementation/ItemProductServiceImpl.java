@@ -16,4 +16,19 @@ public class ItemProductServiceImpl extends BaseServiceImpl<ItemProduct, Long> i
     public ItemProductServiceImpl(BaseRepository<ItemProduct, Long> itemProductRepository) {
         super(itemProductRepository);
     }
+
+    public boolean leave(Long id) throws Exception {
+        try{
+            if(itemProductRepository.existsById(id)) {
+                ItemProduct existingItemProduct = itemProductRepository.findById(id).get();
+                existingItemProduct.setActive(false);
+                itemProductRepository.save(existingItemProduct);
+                return true;
+            }else{
+                throw new Exception();
+            }
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }
