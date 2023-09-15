@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.swing.text.html.Option;
 import java.util.Map;
 import java.util.Optional;
 
@@ -74,6 +73,21 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
                 throw new Exception("El producto no existe");
             }
         } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public boolean leave(Long id) throws Exception {
+        try{
+            if(productRepository.existsById(id)) {
+                Product existingProduct = productRepository.findById(id).get();
+                existingProduct.setActive(false);
+                productRepository.save(existingProduct);
+                return true;
+            }else{
+                throw new Exception();
+            }
+        }catch (Exception e){
             throw new Exception(e.getMessage());
         }
     }
