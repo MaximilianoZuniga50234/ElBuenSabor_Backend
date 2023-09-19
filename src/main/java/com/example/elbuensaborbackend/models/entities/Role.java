@@ -1,4 +1,4 @@
-package com.example.elbuensaborbackend.entities;
+package com.example.elbuensaborbackend.models.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

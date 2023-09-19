@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.services.Implementation;
 
-import com.example.elbuensaborbackend.entities.Address;
+import com.example.elbuensaborbackend.models.entities.Address;
 import com.example.elbuensaborbackend.repositories.AddressRepository;
 import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.services.AddressService;

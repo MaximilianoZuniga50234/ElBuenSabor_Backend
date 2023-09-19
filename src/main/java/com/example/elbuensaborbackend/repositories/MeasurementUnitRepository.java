@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.repositories;
 
-import com.example.elbuensaborbackend.entities.MeasurementUnit;
+import com.example.elbuensaborbackend.models.entities.MeasurementUnit;
 import org.springframework.stereotype.Repository;
 
 @Repository

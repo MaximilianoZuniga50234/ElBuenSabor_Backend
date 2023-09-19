@@ -1,4 +1,4 @@
-package com.example.elbuensaborbackend.entities;
+package com.example.elbuensaborbackend.models.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "measurement_unit")
+@Table(name = "item_product")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MeasurementUnit extends Base {
+public class ItemProduct extends Base {
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "denomination")
+    private String denomination;
 
     @Column(name = "active")
     private boolean active;

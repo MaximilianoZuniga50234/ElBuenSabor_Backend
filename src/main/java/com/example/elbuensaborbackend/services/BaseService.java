@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.services;
 
-import com.example.elbuensaborbackend.entities.Base;
+import com.example.elbuensaborbackend.models.entities.Base;
 
 import java.io.Serializable;
 import java.util.List;

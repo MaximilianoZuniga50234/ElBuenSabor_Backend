@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.services.Implementation;
 
-import com.example.elbuensaborbackend.entities.MercadoPagoData;
+import com.example.elbuensaborbackend.models.entities.MercadoPagoData;
 import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.MercadoPagoDataRepository;
 import com.example.elbuensaborbackend.services.MercadoPagoDataService;

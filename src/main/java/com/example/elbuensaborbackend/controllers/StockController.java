@@ -1,7 +1,7 @@
 package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.controllers.BaseControllerImpl.BaseControllerImpl;
-import com.example.elbuensaborbackend.entities.Stock;
+import com.example.elbuensaborbackend.models.entities.Stock;
 import com.example.elbuensaborbackend.services.Implementation.StockServiceImpl;
 import com.example.elbuensaborbackend.services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,8 @@
 package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.controllers.BaseControllerImpl.BaseControllerImpl;
-import com.example.elbuensaborbackend.entities.ItemStock;
+import com.example.elbuensaborbackend.models.entities.ItemStock;
 import com.example.elbuensaborbackend.services.Implementation.ItemStockServiceImpl;
-import com.example.elbuensaborbackend.services.ItemProductService;
 import com.example.elbuensaborbackend.services.ItemStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

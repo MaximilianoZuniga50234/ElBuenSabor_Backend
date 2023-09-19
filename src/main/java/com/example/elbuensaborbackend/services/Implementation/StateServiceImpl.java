@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.services.Implementation;
 
-import com.example.elbuensaborbackend.entities.State;
+import com.example.elbuensaborbackend.models.entities.State;
 import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.StateRepository;
 import com.example.elbuensaborbackend.services.StateService;

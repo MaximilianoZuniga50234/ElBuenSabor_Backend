@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.services;
 
-import com.example.elbuensaborbackend.entities.Product;
+import com.example.elbuensaborbackend.models.entities.Product;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;

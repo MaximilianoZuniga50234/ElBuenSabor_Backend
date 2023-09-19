@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.services.Implementation;
 
-import com.example.elbuensaborbackend.entities.Invoice;
+import com.example.elbuensaborbackend.models.entities.Invoice;
 import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.InvoiceRepository;
 import com.example.elbuensaborbackend.services.InvoiceService;
