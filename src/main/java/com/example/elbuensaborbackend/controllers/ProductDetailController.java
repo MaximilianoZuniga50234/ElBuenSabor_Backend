@@ -1,7 +1,7 @@
 package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.controllers.BaseControllerImpl.BaseControllerImpl;
-import com.example.elbuensaborbackend.entities.ProductDetail;
+import com.example.elbuensaborbackend.models.entities.ProductDetail;
 import com.example.elbuensaborbackend.services.Implementation.ProductDetailServiceImpl;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

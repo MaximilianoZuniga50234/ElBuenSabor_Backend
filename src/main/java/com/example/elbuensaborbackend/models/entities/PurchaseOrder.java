@@ -1,4 +1,4 @@
-package com.example.elbuensaborbackend.entities;
+package com.example.elbuensaborbackend.models.entities;
 
 import jakarta.persistence.*;
 
@@ -42,8 +42,8 @@ public class PurchaseOrder extends Base {
     private Address address;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "state_id")

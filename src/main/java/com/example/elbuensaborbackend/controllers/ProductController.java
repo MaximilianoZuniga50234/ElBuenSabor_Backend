@@ -1,7 +1,7 @@
 package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.controllers.BaseControllerImpl.BaseControllerImpl;
-import com.example.elbuensaborbackend.entities.Product;
+import com.example.elbuensaborbackend.models.entities.Product;
 import com.example.elbuensaborbackend.services.CloudinaryService;
 import com.example.elbuensaborbackend.services.Implementation.ProductServiceImpl;
 import com.example.elbuensaborbackend.services.ProductService;

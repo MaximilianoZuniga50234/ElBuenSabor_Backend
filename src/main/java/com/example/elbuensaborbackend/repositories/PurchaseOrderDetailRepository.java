@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.repositories;
 
-import com.example.elbuensaborbackend.entities.PurchaseOrderDetail;
+import com.example.elbuensaborbackend.models.entities.PurchaseOrderDetail;
 import org.springframework.stereotype.Repository;
 
 @Repository

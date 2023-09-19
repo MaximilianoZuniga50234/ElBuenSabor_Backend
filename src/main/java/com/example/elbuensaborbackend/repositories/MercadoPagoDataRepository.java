@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.repositories;
 
-import com.example.elbuensaborbackend.entities.MercadoPagoData;
+import com.example.elbuensaborbackend.models.entities.MercadoPagoData;
 import org.springframework.stereotype.Repository;
 
 @Repository

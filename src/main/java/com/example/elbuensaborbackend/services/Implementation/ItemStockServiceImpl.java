@@ -1,7 +1,6 @@
 package com.example.elbuensaborbackend.services.Implementation;
 
-import com.example.elbuensaborbackend.entities.ItemProduct;
-import com.example.elbuensaborbackend.entities.ItemStock;
+import com.example.elbuensaborbackend.models.entities.ItemStock;
 import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.ItemStockRepository;
 import com.example.elbuensaborbackend.services.ItemStockService;
