@@ -20,6 +20,9 @@ public class User extends Base {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "profile_pic_url")
+    private String profilePictureUrl;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id")
     private Person person;
