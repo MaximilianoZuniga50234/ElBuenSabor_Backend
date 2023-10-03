@@ -36,11 +36,25 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests()
+      /*  http
+                .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.OPTIONS).permitAll()
                 .requestMatchers("/api/public").permitAll()
+                .requestMatchers("/api/v1/**").permitAll()
                 .requestMatchers("/**").authenticated()
                 .and().cors().configurationSource(corsConfigurationSource())
+                .and().oauth2ResourceServer()
+                .jwt()
+                .decoder(jwtDecoder())
+                .jwtAuthenticationConverter(jwtAuthenticationConverter());
+        return http.build();*/
+
+        http
+                .csrf().disable()
+                .cors().and()
+                .authorizeHttpRequests()
+                .requestMatchers("/api/public","/api/v1/**").permitAll()
+                .requestMatchers("/**").permitAll()
                 .and().oauth2ResourceServer()
                 .jwt()
                 .decoder(jwtDecoder())
@@ -79,7 +93,7 @@ public class SecurityConfiguration {
     @Bean
     JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter converter = new JwtGrantedAuthoritiesConverter();
-        converter.setAuthoritiesClaimName("permissions");
+        converter.setAuthoritiesClaimName("https://elBuenSaborApi/roles");
         converter.setAuthorityPrefix("");
         JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
         jwtConverter.setJwtGrantedAuthoritiesConverter(converter);
