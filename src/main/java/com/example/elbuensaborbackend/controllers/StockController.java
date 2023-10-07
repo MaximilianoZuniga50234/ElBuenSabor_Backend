@@ -17,7 +17,7 @@ public class StockController extends BaseControllerImpl<Stock, StockServiceImpl>
     @Autowired
     StockService stockService;
 
-    @DeleteMapping("/deactivate/{id}")
+    @DeleteMapping("/desactivate/{id}")
     public ResponseEntity<?> leave(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(stockService.leave(id));

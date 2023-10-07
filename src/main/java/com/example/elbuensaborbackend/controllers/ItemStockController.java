@@ -17,7 +17,7 @@ public class ItemStockController extends BaseControllerImpl<ItemStock, ItemStock
     @Autowired
     ItemStockService itemStockService;
 
-    @DeleteMapping("/deactivate/{id}")
+    @DeleteMapping("/desactivate/{id}")
     public ResponseEntity<?> leave(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(itemStockService.leave(id));
