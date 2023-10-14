@@ -7,6 +7,7 @@ import com.example.elbuensaborbackend.services.ItemProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +17,27 @@ public class ItemProductController extends BaseControllerImpl<ItemProduct, ItemP
 
     @Autowired
     ItemProductService itemProductService;
+
+
+    @PostMapping("")
+    @PreAuthorize("hasAuthority('Admin')")
+    public ResponseEntity<?> save(@RequestBody ItemProduct itemProduct) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.save(itemProduct));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('Admin')")
+    public ResponseEntity<?> update(@RequestBody ItemProduct itemProduct, @PathVariable Long id) {
+        try {
+
+            return ResponseEntity.status(HttpStatus.OK).body(service.update(itemProduct, id));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
 
     @DeleteMapping("/desactivate/{id}")
     public ResponseEntity<?> leave(@PathVariable Long id) {
