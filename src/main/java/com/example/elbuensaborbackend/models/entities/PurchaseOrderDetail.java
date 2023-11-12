@@ -1,5 +1,6 @@
 package com.example.elbuensaborbackend.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class PurchaseOrderDetail extends Base {
     @Column(name = "subtotal")
     private double subtotal;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "order_id")
     private PurchaseOrder order;

@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/v1/state")
+@RequestMapping("/api/v1/status")
 public class StatusController extends BaseControllerImpl<Status, StatusServiceImpl> {
 }
