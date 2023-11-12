@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "state")
+@Table(name = "status")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Status extends Base {
 
-    @Column(name = "state")
-    private String state;
+    @Column(name = "status")
+    private String status;
 }
