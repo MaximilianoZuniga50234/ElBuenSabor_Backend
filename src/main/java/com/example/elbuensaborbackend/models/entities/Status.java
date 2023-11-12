@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class State extends Base {
+public class Status extends Base {
 
     @Column(name = "state")
     private String state;

@@ -46,8 +46,8 @@ public class PurchaseOrder extends Base {
     private User user;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "state_id")
-    private State state;
+    @JoinColumn(name = "status_id")
+    private Status status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<PurchaseOrderDetail> details = new ArrayList<>();

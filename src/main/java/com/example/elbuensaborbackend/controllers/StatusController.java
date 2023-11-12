@@ -1,8 +1,8 @@
 package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.controllers.BaseControllerImpl.BaseControllerImpl;
-import com.example.elbuensaborbackend.models.entities.State;
-import com.example.elbuensaborbackend.services.Implementation.StateServiceImpl;
+import com.example.elbuensaborbackend.models.entities.Status;
+import com.example.elbuensaborbackend.services.Implementation.StatusServiceImpl;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/state")
-public class StateController extends BaseControllerImpl<State, StateServiceImpl> {
+public class StatusController extends BaseControllerImpl<Status, StatusServiceImpl> {
 }
