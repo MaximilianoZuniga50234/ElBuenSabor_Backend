@@ -2,7 +2,6 @@ package com.example.elbuensaborbackend.models.dtos;
 
 import com.example.elbuensaborbackend.models.entities.Address;
 import com.example.elbuensaborbackend.models.entities.Invoice;
-import com.example.elbuensaborbackend.models.entities.PurchaseOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,7 @@ public class UserDTO {
     private String fullName;
     private String telephone;
     private String role;
-    private List<PurchaseOrder> orders;
+    private Integer orders;
     private List<Address> addresses;
     private List<Invoice> invoices;
 }

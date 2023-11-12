@@ -1,5 +1,6 @@
 package com.example.elbuensaborbackend.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -49,6 +50,7 @@ public class PurchaseOrder extends Base {
     @JoinColumn(name = "status_id")
     private Status status;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<PurchaseOrderDetail> details = new ArrayList<>();
 
