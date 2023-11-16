@@ -1,7 +1,7 @@
 package com.example.elbuensaborbackend.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.example.elbuensaborbackend.util.ItemStockSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
+@JsonSerialize(using = ItemStockSerializer.class)
 public class ItemStock extends Base {
     @Column(name = "name")
     private String name;
@@ -22,8 +22,7 @@ public class ItemStock extends Base {
     @Column(name = "active")
     private boolean active;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "father_id")
     private ItemStock father;
-
 }
