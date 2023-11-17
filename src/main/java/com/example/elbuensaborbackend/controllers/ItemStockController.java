@@ -19,7 +19,7 @@ public class ItemStockController extends BaseControllerImpl<ItemStock, ItemStock
     ItemStockService itemStockService;
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('Admin')")
+//    @PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> save(@RequestBody ItemStock itemStock) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(service.save(itemStock));
