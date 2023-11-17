@@ -1,4 +1,4 @@
-package com.example.elbuensaborbackend.util;
+package com.example.elbuensaborbackend.deprecated;
 
 import com.example.elbuensaborbackend.models.entities.ItemStock;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 import java.io.IOException;
-
+@Deprecated
 public class ItemStockSerializer extends JsonSerializer<ItemStock> {
     @Override
     public void serialize(ItemStock itemStock, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
