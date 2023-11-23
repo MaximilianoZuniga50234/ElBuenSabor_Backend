@@ -18,9 +18,8 @@ public class StockController extends BaseControllerImpl<Stock, StockServiceImpl>
     @Autowired
     StockService stockService;
 
-
     @PostMapping("")
-    @PreAuthorize("hasAuthority('Admin')")
+    //@PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> save(@RequestBody Stock stock) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(stockService.save(stock));
@@ -28,11 +27,11 @@ public class StockController extends BaseControllerImpl<Stock, StockServiceImpl>
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
     }
+
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('Admin')")
+    //@PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> update(@RequestBody Stock stock, @PathVariable Long id) {
         try {
-
             return ResponseEntity.status(HttpStatus.OK).body(stockService.update(stock, id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
