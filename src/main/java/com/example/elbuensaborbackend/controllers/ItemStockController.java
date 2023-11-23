@@ -27,8 +27,9 @@ public class ItemStockController extends BaseControllerImpl<ItemStock, ItemStock
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
     }
+
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('Admin')")
+    //@PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> update(@RequestBody ItemStock itemStock, @PathVariable Long id) {
         try {
 

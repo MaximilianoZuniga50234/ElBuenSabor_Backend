@@ -19,7 +19,7 @@ public class MeasurementUnitController extends BaseControllerImpl<MeasurementUni
     MeasurementUnitService measurementUnitService;
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('Admin')")
+    //@PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> save(@RequestBody MeasurementUnit measurementUnit) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(service.save(measurementUnit));
@@ -27,8 +27,9 @@ public class MeasurementUnitController extends BaseControllerImpl<MeasurementUni
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
     }
+
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('Admin')")
+    // @PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> update(@RequestBody MeasurementUnit measurementUnit, @PathVariable Long id) {
         try {
 

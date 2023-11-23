@@ -20,7 +20,7 @@ public class ItemProductController extends BaseControllerImpl<ItemProduct, ItemP
 
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('Admin')")
+    //@PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> save(@RequestBody ItemProduct itemProduct) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(service.save(itemProduct));
@@ -28,8 +28,9 @@ public class ItemProductController extends BaseControllerImpl<ItemProduct, ItemP
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
     }
+
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('Admin')")
+    //@PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> update(@RequestBody ItemProduct itemProduct, @PathVariable Long id) {
         try {
 

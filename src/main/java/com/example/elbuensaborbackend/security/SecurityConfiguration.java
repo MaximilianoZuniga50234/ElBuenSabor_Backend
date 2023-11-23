@@ -55,7 +55,7 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .cors().and()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/public","/api/v1/**").permitAll()
+                .requestMatchers("/api/public", "/api/v1/**").permitAll()
                 .requestMatchers("/**").permitAll()
                 .and().oauth2ResourceServer()
                 .jwt()
