@@ -67,4 +67,15 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
         }
     }
 
+    @GetMapping("/search/{denomination}")
+    public ResponseEntity<?> findProductForDenomination(@PathVariable String denomination) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.findProductForDenomination(denomination));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
+
 }

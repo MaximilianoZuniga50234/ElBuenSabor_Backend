@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -88,6 +89,15 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
                 throw new Exception();
             }
         }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public List<Product> findProductForDenomination(String denomination) throws Exception{
+        try {
+            List<Product> products = productRepository.findByDenominationContaining(denomination);
+            return  products;
+        } catch (Exception e){
             throw new Exception(e.getMessage());
         }
     }
