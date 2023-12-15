@@ -77,5 +77,14 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
         }
     }
 
+    @GetMapping("/search/cat/{category}")
+    public ResponseEntity<?> findProductsByCategory(@PathVariable String category) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.findProductsByCategory(category));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
 
 }
