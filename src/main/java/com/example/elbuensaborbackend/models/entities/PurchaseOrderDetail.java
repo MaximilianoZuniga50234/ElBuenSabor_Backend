@@ -26,11 +26,11 @@ public class PurchaseOrderDetail extends Base {
     @JoinColumn(name = "order_id")
     private PurchaseOrder order;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "stock_id")
     private Stock stock;
 }

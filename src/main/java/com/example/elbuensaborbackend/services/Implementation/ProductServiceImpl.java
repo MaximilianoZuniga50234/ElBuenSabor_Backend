@@ -95,8 +95,15 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
 
     public List<Product> findProductForDenomination(String denomination) throws Exception{
         try {
-            List<Product> products = productRepository.findByDenominationContaining(denomination);
-            return  products;
+            return productRepository.findByDenominationContaining(denomination);
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public List<Product> findProductsByCategory(String denomination) throws Exception{
+        try {
+            return productRepository.findByItemProduct_Denomination(denomination);
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
