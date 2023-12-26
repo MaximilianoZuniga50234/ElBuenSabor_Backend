@@ -46,8 +46,8 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
                 userDto.setTelephone(user.getPerson().getPhoneNumber());
                 userDto.setRole(user.getRole().getRole());
                 userDto.setAddresses(addressRepository.addressByPerson(user.getPerson()));
-                userDto.setOrders(purchaseOrderRepository.ordersByUser(user).size());
-                userDto.setInvoices(invoiceRepository.invoicesByUser(user));
+                //userDto.setOrders(purchaseOrderRepository.ordersByUser(user).size());
+                //userDto.setInvoices(invoiceRepository.invoicesByUser(user));
                 usersDTO.add(userDto);
             });
             return usersDTO;

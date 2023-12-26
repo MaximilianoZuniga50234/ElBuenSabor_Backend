@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 public interface InvoiceRepository extends BaseRepository<Invoice, Long>{
 
-    @Query("SELECT i FROM Invoice i WHERE i.purchaseOrder.user = :user")
-    List<Invoice> invoicesByUser(@Param("user") User user);
+    //@Query("SELECT i FROM Invoice i WHERE i.purchaseOrder.user = :user")
+    //List<Invoice> invoicesByUser(@Param("user") User user);
 }
