@@ -43,8 +43,8 @@ public class PurchaseOrder extends Base {
     private Address address;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "person_id")
+    private Person person;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "status_id")
