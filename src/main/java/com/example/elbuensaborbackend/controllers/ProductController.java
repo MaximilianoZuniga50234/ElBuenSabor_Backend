@@ -6,6 +6,7 @@ import com.example.elbuensaborbackend.services.CloudinaryService;
 import com.example.elbuensaborbackend.services.Implementation.ProductServiceImpl;
 import com.example.elbuensaborbackend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,6 +78,17 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
         }
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> findProductsByPrice(@RequestParam(required = false) String min,
+                                                 @RequestParam(required = false) String max) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.findProductsByPrice(min, max));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
     @GetMapping("/search/cat/{category}")
     public ResponseEntity<?> findProductsByCategory(@PathVariable String category) {
         try {
@@ -86,5 +98,4 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
                     .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
     }
-
 }

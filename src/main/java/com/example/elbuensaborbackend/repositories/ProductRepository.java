@@ -9,5 +9,9 @@ import java.util.List;
 public interface ProductRepository extends BaseRepository<Product, Long> {
     List<Product> findByDenominationContaining(String denomination);
     List<Product> findByItemProduct_Denomination(String category);
+
+    List<Product> findAllBySalePriceGreaterThanEqualAndSalePriceLessThan(Double min, Double max);
+    List<Product> findAllBySalePriceGreaterThanEqual(Double min);
+    List<Product> findAllBySalePriceLessThan(Double max);
 }
 
