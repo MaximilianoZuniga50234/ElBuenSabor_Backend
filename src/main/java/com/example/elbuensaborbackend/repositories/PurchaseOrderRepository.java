@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface PurchaseOrderRepository extends BaseRepository<PurchaseOrder, Long>{
 
-    @Query("SELECT o FROM PurchaseOrder o WHERE o.user = :user")
-    List<PurchaseOrder> ordersByUser(@Param("user") User user);
+
+    //@Query("SELECT o FROM PurchaseOrder o WHERE o.user = :user")
+    //List<PurchaseOrder> ordersByUser(@Param("user") User user);
 }

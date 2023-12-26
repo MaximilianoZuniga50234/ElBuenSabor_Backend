@@ -30,4 +30,7 @@ public class Person extends Base {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "user_id")
+    private String user_id;
+
 }
