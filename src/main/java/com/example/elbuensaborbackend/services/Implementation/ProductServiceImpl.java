@@ -5,6 +5,7 @@ import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.ProductRepository;
 import com.example.elbuensaborbackend.services.CloudinaryService;
 import com.example.elbuensaborbackend.services.ProductService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -79,34 +80,65 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
     }
 
     public boolean leave(Long id) throws Exception {
-        try{
-            if(productRepository.existsById(id)) {
+        try {
+            if (productRepository.existsById(id)) {
                 Product existingProduct = productRepository.findById(id).get();
                 existingProduct.setActive(false);
                 productRepository.save(existingProduct);
                 return true;
-            }else{
+            } else {
                 throw new Exception();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
 
-    public List<Product> findProductForDenomination(String denomination) throws Exception{
+    public List<Product> findAll(String name, String order, String category, String min, String max) throws Exception {
+        try {
+            return productRepository.findProductsByFilters(name,
+                    category == null ? null : Long.parseLong(category),
+                    min == null ? null : Double.parseDouble(min),
+                    max == null ? null : Double.parseDouble(max),
+                    order == null ? null : Integer.parseInt(order));
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    /*public List<Product> findProductForDenomination(String denomination) throws Exception {
         try {
             return productRepository.findByDenominationContaining(denomination);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
 
-    public List<Product> findProductsByCategory(String denomination) throws Exception{
+    public List<Product> findProductsByCategory(String denomination) throws Exception {
         try {
             return productRepository.findByItemProduct_Denomination(denomination);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
 
+    public List<Product> findProductsByPrice(String min, String max) throws Exception {
+        try {
+            if (ObjectUtils.isNotEmpty(min) && ObjectUtils.isNotEmpty(max)) {
+                return productRepository.
+                        findAllBySalePriceGreaterThanEqualAndSalePriceLessThan(
+                                Double.parseDouble(min),
+                                Double.parseDouble(max));
+            }
+            if (ObjectUtils.isEmpty(max)) {
+                return productRepository.findAllBySalePriceGreaterThanEqual(Double.parseDouble(min));
+            }
+            if (ObjectUtils.isEmpty(min)) {
+                return productRepository.findAllBySalePriceLessThan(Double.parseDouble(max));
+            }
+            throw new Exception();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }*/
 }

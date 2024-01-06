@@ -6,6 +6,7 @@ import com.example.elbuensaborbackend.services.CloudinaryService;
 import com.example.elbuensaborbackend.services.Implementation.ProductServiceImpl;
 import com.example.elbuensaborbackend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,19 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
 
     @Autowired
     CloudinaryService cloudinaryService;
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll(@RequestParam(required = false) String name,
+                                    @RequestParam(required = false) String order,
+                                    @RequestParam(required = false) String category,
+                                    @RequestParam(required = false) String min,
+                                    @RequestParam(required = false) String max) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.findAll(name, order, category, min, max));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
 
     @PostMapping("/create")
     public ResponseEntity<?> saveWithImage(@RequestPart("product") Product product,
@@ -67,10 +81,21 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
         }
     }
 
-    @GetMapping("/search/{denomination}")
+    /*@GetMapping("/search/{denomination}")
     public ResponseEntity<?> findProductForDenomination(@PathVariable String denomination) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(productService.findProductForDenomination(denomination));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> findProductsByPrice(@RequestParam(required = false) String min,
+                                                 @RequestParam(required = false) String max) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.findProductsByPrice(min, max));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
@@ -85,6 +110,5 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
-    }
-
+    }*/
 }
