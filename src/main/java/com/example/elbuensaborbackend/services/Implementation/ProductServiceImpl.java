@@ -94,7 +94,19 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
         }
     }
 
-    public List<Product> findProductForDenomination(String denomination) throws Exception {
+    public List<Product> findAll(String name, String order, String category, String min, String max) throws Exception {
+        try {
+            return productRepository.findProductsByFilters(name,
+                    category == null ? null : Long.parseLong(category),
+                    min == null ? null : Double.parseDouble(min),
+                    max == null ? null : Double.parseDouble(max),
+                    order == null ? null : Integer.parseInt(order));
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    /*public List<Product> findProductForDenomination(String denomination) throws Exception {
         try {
             return productRepository.findByDenominationContaining(denomination);
         } catch (Exception e) {
@@ -128,5 +140,5 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-    }
+    }*/
 }

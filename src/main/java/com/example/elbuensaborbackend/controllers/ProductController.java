@@ -25,6 +25,19 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
     @Autowired
     CloudinaryService cloudinaryService;
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll(@RequestParam(required = false) String name,
+                                    @RequestParam(required = false) String order,
+                                    @RequestParam(required = false) String category,
+                                    @RequestParam(required = false) String min,
+                                    @RequestParam(required = false) String max) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.findAll(name, order, category, min, max));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> saveWithImage(@RequestPart("product") Product product,
                                            @RequestPart(value = "image", required = false) Optional<MultipartFile> image) {
@@ -68,7 +81,7 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
         }
     }
 
-    @GetMapping("/search/{denomination}")
+    /*@GetMapping("/search/{denomination}")
     public ResponseEntity<?> findProductForDenomination(@PathVariable String denomination) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(productService.findProductForDenomination(denomination));
@@ -97,5 +110,5 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
-    }
+    }*/
 }
