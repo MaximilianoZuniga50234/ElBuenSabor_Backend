@@ -38,6 +38,24 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
         }
     }
 
+    @GetMapping("/all/sale")
+    public ResponseEntity<?> getAllSale() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.findAllSale());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
+    @GetMapping("/all/featured")
+    public ResponseEntity<?> getAllFeatured() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.findAllFeatured());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> saveWithImage(@RequestPart("product") Product product,
                                            @RequestPart(value = "image", required = false) Optional<MultipartFile> image) {

@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implements ProductService {
@@ -101,6 +100,27 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
                     min == null ? null : Double.parseDouble(min),
                     max == null ? null : Double.parseDouble(max),
                     order == null ? null : Integer.parseInt(order));
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public List<Product> findAllFeatured() throws Exception {
+        try {
+            Random r = new Random();
+            List<Product> products = productRepository.findAll();
+
+            return r.ints(products.size() / 2, 0, products.size())
+                    .mapToObj(products::get)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public List<Product> findAllSale() throws Exception {
+        try {
+            return productRepository.findAllByDiscountPercentajeGreaterThan(0.0);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
