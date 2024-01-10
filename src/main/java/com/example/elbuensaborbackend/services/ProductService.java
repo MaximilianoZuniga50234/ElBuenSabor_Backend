@@ -16,6 +16,8 @@ public interface ProductService extends BaseService<Product, Long> {
     boolean leave(Long id) throws Exception;
 
     List<Product> findAll(String name, String order, String category, String min, String max) throws Exception;
+    List<Product> findAllFeatured() throws Exception;
+    List<Product> findAllSale() throws Exception;
 //    List<Product> findProductForDenomination(String denomination) throws Exception;
 //    List<Product> findProductsByCategory(String category) throws Exception;
 //    List<Product> findProductsByPrice(String min, String max) throws Exception;

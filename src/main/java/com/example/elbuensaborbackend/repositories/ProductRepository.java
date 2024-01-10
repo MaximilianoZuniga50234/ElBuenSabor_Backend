@@ -26,6 +26,8 @@ public interface ProductRepository extends BaseRepository<Product, Long> {
                                         @Param("salePriceMax") Double max,
                                         @Param("order") Integer order);
 
+    List<Product> findAllByDiscountPercentajeGreaterThan(Double discount);
+
     /*List<Product> findByDenominationContaining(String denomination);
     List<Product> findByItemProduct_Denomination(String category);
     List<Product> findAllBySalePriceGreaterThanEqualAndSalePriceLessThan(Double min, Double max);
