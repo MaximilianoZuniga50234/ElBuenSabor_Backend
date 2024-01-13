@@ -110,7 +110,9 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
             Random r = new Random();
             List<Product> products = productRepository.findAll();
 
-            return r.ints(products.size() / 2, 0, products.size())
+            return r.ints(0, products.size())
+                    .distinct()
+                    .limit(products.size() / 2)
                     .mapToObj(products::get)
                     .collect(Collectors.toList());
         } catch (Exception e) {
