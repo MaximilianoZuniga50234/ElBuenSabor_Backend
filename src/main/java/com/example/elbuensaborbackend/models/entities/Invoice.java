@@ -1,5 +1,6 @@
 package com.example.elbuensaborbackend.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,9 +25,6 @@ public class Invoice extends Base {
     @Column(name = "discount_amount")
     private double discountAmount;
 
-    @Column(name = "payment_method")
-    private String paymentMethod;
-
     @Column(name = "total_sale")
     private double totalSale;
 
@@ -41,6 +39,7 @@ public class Invoice extends Base {
     @JoinColumn(name = "mercado_pago_data_id")
     private MercadoPagoData mercadoPagoData;
 
-    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<InvoiceDetail> details = new ArrayList<>();
 }
