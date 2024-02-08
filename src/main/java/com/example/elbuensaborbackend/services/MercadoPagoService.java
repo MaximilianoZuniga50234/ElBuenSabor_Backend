@@ -16,7 +16,7 @@ public class MercadoPagoService {
 
     @PostConstruct
     public void initMPConfig() {
-        MercadoPagoConfig.setAccessToken("TEST-8665333237373017-020618-0bc5a8932c7632a0326e8fc69e69ab1d-1670260025");
+        MercadoPagoConfig.setAccessToken("TEST-2033417388807626-012011-d4e95fe1e172698e80f06adc5f0a6cd6-660556270");
     }
 
     public Preference createPreference(MercadoPagoProduct mercadoPagoProduct) throws Exception {
@@ -35,9 +35,9 @@ public class MercadoPagoService {
 
         PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest
                 .builder()
-                .success("el-buen-sabor-front-end.vercel.app")
-                .failure("https://youtube.com")
-                .pending("https://youtube.com")
+                .success("http://localhost:5173/u/success ")
+                .failure("http://localhost:5173/u/failure")
+                .pending("http://localhost:5173/u/pending")
                 .build();
 
         PreferenceRequest preferenceRequest = PreferenceRequest
