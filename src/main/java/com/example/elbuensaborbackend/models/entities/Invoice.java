@@ -31,6 +31,9 @@ public class Invoice extends Base {
     @Column(name = "total_cost")
     private double totalCost;
 
+    @Column(name = "active")
+    private boolean active;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "purchase_order_id")
     private PurchaseOrder purchaseOrder;

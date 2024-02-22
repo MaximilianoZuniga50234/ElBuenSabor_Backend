@@ -38,6 +38,9 @@ public class PurchaseOrder extends Base {
     @Column(name = "total")
     private double total;
 
+    @Column(name = "active")
+    private boolean active;
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "address_id")
     private Address address;
