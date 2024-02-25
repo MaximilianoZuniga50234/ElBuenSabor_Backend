@@ -25,6 +25,9 @@ public class CreditNote extends Base {
     @Column(name = "total")
     private double total;
 
+    @Column(name = "active")
+    private boolean active;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "purchase_order_id")
     private PurchaseOrder purchaseOrder;
