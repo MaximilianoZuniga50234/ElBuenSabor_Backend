@@ -38,10 +38,13 @@ public class PurchaseOrder extends Base {
     @Column(name = "total")
     private double total;
 
+    @Column(name = "amount_to_paid")
+    private double amountToPaid;
+
     @Column(name = "active")
     private boolean active;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "address_id")
     private Address address;
 
