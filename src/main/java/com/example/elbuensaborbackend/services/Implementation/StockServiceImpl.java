@@ -7,6 +7,8 @@ import com.example.elbuensaborbackend.services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StockServiceImpl extends BaseServiceImpl<Stock, Long> implements StockService {
 
@@ -25,8 +27,16 @@ public class StockServiceImpl extends BaseServiceImpl<Stock, Long> implements St
                 stockRepository.save(existingStock);
                 return true;
             }else{
-                throw new Exception();
+                throw new Exception("Stock no encontrado con id: " + id);
             }
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public List<Stock> getOnlyIngredients() throws Exception {
+        try{
+            return stockRepository.getAllIngredients();
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
