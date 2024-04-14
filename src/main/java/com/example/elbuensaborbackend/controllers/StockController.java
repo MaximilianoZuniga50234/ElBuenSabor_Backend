@@ -18,6 +18,16 @@ public class StockController extends BaseControllerImpl<Stock, StockServiceImpl>
     @Autowired
     StockService stockService;
 
+    @GetMapping("/ingredients")
+    //@PreAuthorize("hasAuthority('Admin')")
+    public ResponseEntity<?> getIngredients() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(stockService.getOnlyIngredients());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
     @PostMapping("")
     //@PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> save(@RequestBody Stock stock) {
