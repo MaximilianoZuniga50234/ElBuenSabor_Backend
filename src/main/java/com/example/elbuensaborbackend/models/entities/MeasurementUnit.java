@@ -22,4 +22,7 @@ public class MeasurementUnit extends Base {
     @Column(name = "active")
     private boolean active;
 
+    @Column(name = "abbreviation")
+    private String abbreviation;
+
 }
