@@ -38,8 +38,8 @@ public class Invoice extends Base {
     @JoinColumn(name = "purchase_order_id")
     private PurchaseOrder purchaseOrder;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "mercado_pago_data_id")
+    @JsonManagedReference
+    @OneToOne(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private MercadoPagoData mercadoPagoData;
 
     @JsonManagedReference
