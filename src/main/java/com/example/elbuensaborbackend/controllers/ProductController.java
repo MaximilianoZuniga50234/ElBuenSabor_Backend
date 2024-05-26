@@ -57,7 +57,7 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> saveWithImage(@RequestPart("product") Product product,
+    public ResponseEntity<?> saveWithImage(@RequestPart("product") String product,
                                            @RequestPart(value = "image", required = false) Optional<MultipartFile> image) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(productService.saveWithImage(product, image));
@@ -68,7 +68,7 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateWithImage(@RequestPart("product") Product product,
+    public ResponseEntity<?> updateWithImage(@RequestParam("product") String product,
                                              @RequestParam(value = "image", required = false) Optional<MultipartFile> image,
                                              @PathVariable Long id) {
         try {
@@ -89,44 +89,13 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
         }
     }
 
-    @DeleteMapping("/desactivate/{id}")
+    @PatchMapping("/desactivate/{id}")
     public ResponseEntity<?> leave(@PathVariable Long id) {
         try {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(productService.leave(id));
+            return ResponseEntity.status(HttpStatus.OK).body(productService.leave(id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
     }
-
-    /*@GetMapping("/search/{denomination}")
-    public ResponseEntity<?> findProductForDenomination(@PathVariable String denomination) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(productService.findProductForDenomination(denomination));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
-        }
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<?> findProductsByPrice(@RequestParam(required = false) String min,
-                                                 @RequestParam(required = false) String max) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(productService.findProductsByPrice(min, max));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
-        }
-    }
-
-    @GetMapping("/search/cat/{category}")
-    public ResponseEntity<?> findProductsByCategory(@PathVariable String category) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(productService.findProductsByCategory(category));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
-        }
-    }*/
 }

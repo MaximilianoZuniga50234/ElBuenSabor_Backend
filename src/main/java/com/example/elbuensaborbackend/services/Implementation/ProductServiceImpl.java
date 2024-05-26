@@ -5,6 +5,7 @@ import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.ProductRepository;
 import com.example.elbuensaborbackend.services.CloudinaryService;
 import com.example.elbuensaborbackend.services.ProductService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,35 +28,41 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
     }
 
     @Transactional
-    public Product saveWithImage(Product product, Optional<MultipartFile> image) throws Exception {
+    public Product saveWithImage(String product, Optional<MultipartFile> image) throws Exception {
         try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Product productObj = objectMapper.readValue(product, Product.class);
+
             if (image.isPresent()) {
                 Map<String, ?> result = cloudinaryService.upload(image.get());
-                product.setImgUrl(result.get("secure_url").toString());
-                product.setImgId(result.get("public_id").toString());
+                productObj.setImgUrl(result.get("secure_url").toString());
+                productObj.setImgId(result.get("public_id").toString());
             }
-            product = productRepository.save(product);
-            return product;
+            productObj = productRepository.save(productObj);
+            return productObj;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
 
     @Transactional
-    public Product updateWithImage(Product product, Optional<MultipartFile> image, Long id) throws Exception {
+    public Product updateWithImage(String product, Optional<MultipartFile> image, Long id) throws Exception {
         try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Product productObj = objectMapper.readValue(product, Product.class);
+
             Optional<Product> oldProduct = productRepository.findById(id);
             if (oldProduct.isEmpty()) {
                 throw new Exception("No se encontró el producto con el id: " + id);
             }
             if (image.isPresent()) {
                 Map<String, ?> result = cloudinaryService.upload(image.get());
-                product.setImgUrl(result.get("secure_url").toString());
-                product.setImgId(result.get("public_id").toString());
+                productObj.setImgUrl(result.get("secure_url").toString());
+                productObj.setImgId(result.get("public_id").toString());
             }
             Product existingProduct = oldProduct.get();
-            product.setId(existingProduct.getId());
-            existingProduct = product;
+            productObj.setId(existingProduct.getId());
+            existingProduct = productObj;
             return productRepository.save(existingProduct);
 
         } catch (Exception e) {
@@ -78,13 +85,12 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
         }
     }
 
-    public boolean leave(Long id) throws Exception {
+    public Product leave(Long id) throws Exception {
         try {
             if (productRepository.existsById(id)) {
                 Product existingProduct = productRepository.findById(id).get();
                 existingProduct.setActive(false);
-                productRepository.save(existingProduct);
-                return true;
+                return productRepository.save(existingProduct);
             } else {
                 throw new Exception();
             }
@@ -99,7 +105,12 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
                     category == null ? null : Long.parseLong(category),
                     min == null ? null : Double.parseDouble(min),
                     max == null ? null : Double.parseDouble(max),
-                    order == null ? null : Integer.parseInt(order));
+                    order == null ? null : Integer.parseInt(order))
+                    .stream()
+                    .sorted(Comparator.comparing(Product::isActive)
+                            .reversed()
+                            .thenComparing(Product::getDenomination))
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -122,45 +133,12 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
 
     public List<Product> findAllSale() throws Exception {
         try {
-            return productRepository.findAllByDiscountPercentajeGreaterThan(0.0);
+            return productRepository.findAllByDiscountPercentajeGreaterThan(0.0)
+                    .stream()
+                    .sorted(Comparator.comparing(Product::getDenomination))
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
-
-    /*public List<Product> findProductForDenomination(String denomination) throws Exception {
-        try {
-            return productRepository.findByDenominationContaining(denomination);
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
-    }
-
-    public List<Product> findProductsByCategory(String denomination) throws Exception {
-        try {
-            return productRepository.findByItemProduct_Denomination(denomination);
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
-    }
-
-    public List<Product> findProductsByPrice(String min, String max) throws Exception {
-        try {
-            if (ObjectUtils.isNotEmpty(min) && ObjectUtils.isNotEmpty(max)) {
-                return productRepository.
-                        findAllBySalePriceGreaterThanEqualAndSalePriceLessThan(
-                                Double.parseDouble(min),
-                                Double.parseDouble(max));
-            }
-            if (ObjectUtils.isEmpty(max)) {
-                return productRepository.findAllBySalePriceGreaterThanEqual(Double.parseDouble(min));
-            }
-            if (ObjectUtils.isEmpty(min)) {
-                return productRepository.findAllBySalePriceLessThan(Double.parseDouble(max));
-            }
-            throw new Exception();
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
-    }*/
 }
