@@ -1,34 +1,38 @@
 package com.example.elbuensaborbackend.services;
 
-import com.resend.*;
-import com.resend.core.exception.ResendException;
-import com.resend.services.emails.model.SendEmailRequest;
-import com.resend.services.emails.model.SendEmailResponse;
+import com.example.elbuensaborbackend.models.entities.PurchaseOrder;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamSource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public class EmailService {
-    Resend resend = new Resend("re_Zx2obbtt_NiTMjon7AK6jDZNkTjQLtrBJ");
 
-    public String sendEmail() {
+    @Autowired
+    private JavaMailSender mailSender;
 
-        SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
-                .from("El Buen Sabor <onboarding@resend.dev>")
-                .to("lautyjofre1@gmail.com")
-                .subject("Pago realizado correctamente")
-                .html("""
-                        <h2>Gracias por comprar en 'El Buen Sabor'</h2>
-                        <h3>Tu pago ha sido realizado correctamente y tu pedido esta a punto de prepararse.</h3>
-                        <h3>¡Esperamos que lo disfrutes!</h3>
-                        <h4>Puedes descargar la factura correspondiente en la página web accediendo a 'Mis órdenes > Detalles > Factura'.</h4>
-                        """)
-                .build();
-        try {
-            SendEmailResponse data = resend.emails().send(sendEmailRequest);
-            return data.getId();
-        } catch (ResendException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public void sendEmail(MultipartFile file, PurchaseOrder order) throws MessagingException, IOException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        helper.setTo(order.getPerson().getEmail());
+        helper.setSubject("Pedido N° " + order.getId() + " facturado");
+        helper.setText("""
+                Gracias por comprar en El Buen Sabor.
+                Tu pedido fue facturado y está a punto de prepararse.
+                ¡Esperamos que lo disfrutes!
+                Adjuntamos la factura correspondiente.""");
+
+        InputStreamSource attachment = new ByteArrayResource(file.getBytes());
+        helper.addAttachment(file.getOriginalFilename(), attachment);
+        mailSender.send(message);
     }
 }
