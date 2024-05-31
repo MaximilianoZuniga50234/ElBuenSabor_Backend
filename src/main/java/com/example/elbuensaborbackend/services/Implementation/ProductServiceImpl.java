@@ -6,7 +6,6 @@ import com.example.elbuensaborbackend.repositories.ProductRepository;
 import com.example.elbuensaborbackend.services.CloudinaryService;
 import com.example.elbuensaborbackend.services.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +22,9 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
     @Autowired
     private CloudinaryService cloudinaryService;
 
+    private final String NO_IMAGE_PRODUCT_URL = "https://res.cloudinary.com/dfdb0nwad/image/upload/v1712072796/image-2935360_1920_ig8cze_fqw8ji.png";
+    private final String NO_IMAGE_PRODUCT_ID = "image-2935360_1920_ig8cze_fqw8ji";
+
     public ProductServiceImpl(BaseRepository<Product, Long> productRepository) {
         super(productRepository);
     }
@@ -37,6 +39,9 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
                 Map<String, ?> result = cloudinaryService.upload(image.get());
                 productObj.setImgUrl(result.get("secure_url").toString());
                 productObj.setImgId(result.get("public_id").toString());
+            } else {
+                productObj.setImgUrl(NO_IMAGE_PRODUCT_URL);
+                productObj.setImgId(NO_IMAGE_PRODUCT_ID);
             }
             productObj = productRepository.save(productObj);
             return productObj;
@@ -102,10 +107,10 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
     public List<Product> findAll(String name, String order, String category, String min, String max) throws Exception {
         try {
             return productRepository.findProductsByFilters(name,
-                    category == null ? null : Long.parseLong(category),
-                    min == null ? null : Double.parseDouble(min),
-                    max == null ? null : Double.parseDouble(max),
-                    order == null ? null : Integer.parseInt(order))
+                            category == null ? null : Long.parseLong(category),
+                            min == null ? null : Double.parseDouble(min),
+                            max == null ? null : Double.parseDouble(max),
+                            order == null ? null : Integer.parseInt(order))
                     .stream()
                     .sorted(Comparator.comparing(Product::isActive)
                             .reversed()
