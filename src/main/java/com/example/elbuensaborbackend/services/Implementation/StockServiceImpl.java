@@ -7,6 +7,7 @@ import com.example.elbuensaborbackend.services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,9 @@ public class StockServiceImpl extends BaseServiceImpl<Stock, Long> implements St
     public List<Stock> getOnlyIngredients() throws Exception {
         try{
             return stockRepository.getAllIngredients().stream()
-                    .sorted((e1, e2) -> Boolean.compare(e1.isActive(), e2.isActive()))
+                    .sorted(Comparator.comparing(Stock::isActive)
+                            .reversed()
+                            .thenComparing(Stock::getDenomination))
                     .collect(Collectors.toList());
         }catch (Exception e){
             throw new Exception(e.getMessage());
