@@ -1,7 +1,6 @@
 package com.example.elbuensaborbackend.services.Implementation;
 
 import com.example.elbuensaborbackend.models.dtos.UserDTO;
-import com.example.elbuensaborbackend.models.entities.Product;
 import com.example.elbuensaborbackend.models.entities.User;
 import com.example.elbuensaborbackend.repositories.*;
 import com.example.elbuensaborbackend.services.CloudinaryService;

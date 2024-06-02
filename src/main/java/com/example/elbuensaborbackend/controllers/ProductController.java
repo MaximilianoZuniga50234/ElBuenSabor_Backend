@@ -2,11 +2,10 @@ package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.controllers.BaseControllerImpl.BaseControllerImpl;
 import com.example.elbuensaborbackend.models.entities.Product;
-import com.example.elbuensaborbackend.services.CloudinaryService;
+import com.example.elbuensaborbackend.services.Implementation.CloudinaryServiceImpl;
 import com.example.elbuensaborbackend.services.Implementation.ProductServiceImpl;
 import com.example.elbuensaborbackend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,7 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
     ProductService productService;
 
     @Autowired
-    CloudinaryService cloudinaryService;
+    CloudinaryServiceImpl cloudinaryService;
 
     @GetMapping("/all")
     public ResponseEntity<?> getAll(@RequestParam(required = false) String name,
