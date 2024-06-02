@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.controllers;
 
-import com.example.elbuensaborbackend.services.Implementation.CloudinaryServiceImpl;
+import com.example.elbuensaborbackend.services.CloudinaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class CloudinaryController {
 
     @Autowired
-    CloudinaryServiceImpl cloudinaryService;
+    CloudinaryService cloudinaryService;
 
     @PostMapping("/upload")
     public ResponseEntity<?> upload(@RequestParam("image") MultipartFile multipartFile){
