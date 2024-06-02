@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StockServiceImpl extends BaseServiceImpl<Stock, Long> implements StockService {
@@ -36,7 +37,9 @@ public class StockServiceImpl extends BaseServiceImpl<Stock, Long> implements St
 
     public List<Stock> getOnlyIngredients() throws Exception {
         try{
-            return stockRepository.getAllIngredients();
+            return stockRepository.getAllIngredients().stream()
+                    .sorted((e1, e2) -> Boolean.compare(e1.isActive(), e2.isActive()))
+                    .collect(Collectors.toList());
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
