@@ -8,8 +8,6 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "stock")
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Stock extends Base {
@@ -41,4 +39,76 @@ public class Stock extends Base {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "itemStock_id")
     private ItemStock itemStock;
+
+    public String getDenomination() {
+        return denomination;
+    }
+
+    public void setDenomination(String denomination) {
+        this.denomination = denomination;
+    }
+
+    public double getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(double purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public double getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public double getCurrentStock() {
+        return currentStock;
+    }
+
+    public void setCurrentStock(double currentStock) {
+        this.currentStock = currentStock;
+    }
+
+    public double getMinimumStock() {
+        return minimumStock;
+    }
+
+    public void setMinimumStock(double minimumStock) {
+        this.minimumStock = minimumStock;
+    }
+
+    public boolean getIsStock() {
+        return isStock;
+    }
+
+    public void setIsStock(boolean isStock) {
+        this.isStock = isStock;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public MeasurementUnit getMeasurementUnit() {
+        return measurementUnit;
+    }
+
+    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
+        this.measurementUnit = measurementUnit;
+    }
+
+    public ItemStock getItemStock() {
+        return itemStock;
+    }
+
+    public void setItemStock(ItemStock itemStock) {
+        this.itemStock = itemStock;
+    }
 }
