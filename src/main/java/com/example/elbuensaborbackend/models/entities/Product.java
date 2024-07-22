@@ -39,6 +39,8 @@ public class Product extends Base {
     @Column(name = "active")
     private boolean active;
 
+    private final String type = "product";
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "itemProduct_id")
     private ItemProduct itemProduct;

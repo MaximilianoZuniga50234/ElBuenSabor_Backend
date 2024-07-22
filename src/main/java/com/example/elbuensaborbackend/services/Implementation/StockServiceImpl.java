@@ -7,7 +7,9 @@ import com.example.elbuensaborbackend.services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StockServiceImpl extends BaseServiceImpl<Stock, Long> implements StockService {
@@ -36,7 +38,24 @@ public class StockServiceImpl extends BaseServiceImpl<Stock, Long> implements St
 
     public List<Stock> getOnlyIngredients() throws Exception {
         try{
-            return stockRepository.getAllIngredients();
+            return stockRepository.getAllIngredients().stream()
+                    .sorted(Comparator.comparing(Stock::isActive)
+                            .reversed()
+                            .thenComparing(Stock::getDenomination))
+                    .collect(Collectors.toList());
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Stock> getNotIngredients() throws Exception {
+        try{
+            return stockRepository.getNotIngredients()
+                    .stream()
+                    .sorted(Comparator.comparing(Stock::isActive)
+                            .reversed())
+                    .collect(Collectors.toList());
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }

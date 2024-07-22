@@ -2,22 +2,11 @@ package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.models.entities.MercadoPagoProduct;
 import com.example.elbuensaborbackend.services.MercadoPagoService;
-import com.mercadopago.MercadoPagoConfig;
-import com.mercadopago.client.preference.*;
-import com.mercadopago.resources.common.Phone;
 import com.mercadopago.resources.preference.Preference;
-import com.mercadopago.resources.preference.PreferenceBackUrls;
-import com.mercadopago.resources.preference.PreferencePayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 
 @RestController
 @CrossOrigin(origins = "*")
