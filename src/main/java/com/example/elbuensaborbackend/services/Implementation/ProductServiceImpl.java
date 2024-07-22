@@ -104,7 +104,7 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
         }
     }
 
-    public List<Product> findAll(String name, String order, String category, String min, String max) throws Exception {
+    /*public List<Product> findAll(String name, String order, String category, String min, String max) throws Exception {
         try {
             return productRepository.findProductsByFilters(name,
                             category == null ? null : Long.parseLong(category),
@@ -113,23 +113,25 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
                             order == null ? null : Integer.parseInt(order))
                     .stream()
                     .sorted(Comparator.comparing(Product::isActive)
-                            .reversed()
-                            .thenComparing(Product::getDenomination))
+                            .reversed())
                     .collect(Collectors.toList());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-    }
+    }*/
 
     public List<Product> findAllFeatured() throws Exception {
         try {
             Random r = new Random();
-            List<Product> products = productRepository.findAll();
+            List<Product> activeProducts = productRepository.findAll()
+                                                            .stream()
+                                                            .filter(Product::isActive)
+                                                            .toList();
 
-            return r.ints(0, products.size())
+            return r.ints(0, activeProducts.size())
                     .distinct()
-                    .limit(products.size() / 2)
-                    .mapToObj(products::get)
+                    .limit(activeProducts.size() / 2)
+                    .mapToObj(activeProducts::get)
                     .collect(Collectors.toList());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -140,6 +142,7 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implement
         try {
             return productRepository.findAllByDiscountPercentajeGreaterThan(0.0)
                     .stream()
+                    .filter(Product::isActive)
                     .sorted(Comparator.comparing(Product::getDenomination))
                     .collect(Collectors.toList());
         } catch (Exception e) {

@@ -24,7 +24,7 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
     @Autowired
     CloudinaryServiceImpl cloudinaryService;
 
-    @GetMapping("/all")
+    /*@GetMapping("/all")
     public ResponseEntity<?> getAll(@RequestParam(required = false) String name,
                                     @RequestParam(required = false) String order,
                                     @RequestParam(required = false) String category,
@@ -35,7 +35,7 @@ public class ProductController extends BaseControllerImpl<Product, ProductServic
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
-    }
+    }*/
 
     @GetMapping("/all/sale")
     public ResponseEntity<?> getAllSale() {

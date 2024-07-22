@@ -47,4 +47,17 @@ public class StockServiceImpl extends BaseServiceImpl<Stock, Long> implements St
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public List<Stock> getNotIngredients() throws Exception {
+        try{
+            return stockRepository.getNotIngredients()
+                    .stream()
+                    .sorted(Comparator.comparing(Stock::isActive)
+                            .reversed())
+                    .collect(Collectors.toList());
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }

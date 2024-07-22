@@ -28,6 +28,15 @@ public class StockController extends BaseControllerImpl<Stock, StockServiceImpl>
         }
     }
 
+    @GetMapping("/not_ingredients")
+    public ResponseEntity<?> getNotIngredients() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(stockService.getNotIngredients());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
     @PostMapping("")
     //@PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> save(@RequestBody Stock stock) {

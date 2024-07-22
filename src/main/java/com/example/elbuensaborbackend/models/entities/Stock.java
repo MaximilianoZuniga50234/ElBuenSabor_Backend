@@ -32,6 +32,14 @@ public class Stock extends Base {
     @Column(name = "active")
     private boolean active;
 
+    @Column(name = "image_url")
+    private String imgUrl;
+
+    @Column(name = "image_id")
+    private String imgId;
+
+    private final String type = "stock";
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "measurementUnit_id")
     private MeasurementUnit measurementUnit;
@@ -39,6 +47,10 @@ public class Stock extends Base {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "itemStock_id")
     private ItemStock itemStock;
+
+    public String getType() {
+        return type;
+    }
 
     public String getDenomination() {
         return denomination;
@@ -110,5 +122,21 @@ public class Stock extends Base {
 
     public void setItemStock(ItemStock itemStock) {
         this.itemStock = itemStock;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(String imgId) {
+        this.imgId = imgId;
     }
 }
