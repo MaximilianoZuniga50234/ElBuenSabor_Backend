@@ -2,6 +2,7 @@ package com.example.elbuensaborbackend.controllers;
 
 import com.example.elbuensaborbackend.controllers.BaseControllerImpl.BaseControllerImpl;
 import com.example.elbuensaborbackend.models.entities.Stock;
+import com.example.elbuensaborbackend.services.Implementation.CloudinaryServiceImpl;
 import com.example.elbuensaborbackend.services.Implementation.StockServiceImpl;
 import com.example.elbuensaborbackend.services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -18,6 +22,8 @@ public class StockController extends BaseControllerImpl<Stock, StockServiceImpl>
     @Autowired
     StockService stockService;
 
+    @Autowired
+    CloudinaryServiceImpl cloudinaryService;
     @GetMapping("/ingredients")
     //@PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<?> getIngredients() {
@@ -54,6 +60,29 @@ public class StockController extends BaseControllerImpl<Stock, StockServiceImpl>
             return ResponseEntity.status(HttpStatus.OK).body(stockService.update(stock, id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> saveWithImage(@RequestPart("stock") String stock,
+                                           @RequestPart(value = "image", required = false) Optional<MultipartFile> image) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(stockService.saveWithImage(stock, image));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
+        }
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateWithImage(@RequestParam("stock") String stock,
+                                             @RequestParam(value = "image", required = false) Optional<MultipartFile> image,
+                                             @PathVariable Long id) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(stockService.updateWithImage(stock, image, id));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"Error, por favor intente nuevamente...\"}");
         }
     }
 
