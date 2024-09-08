@@ -26,6 +26,12 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation group: 'org.hibernate.orm', name: 'hibernate-core', version: '6.2.2.Final'
     implementation group: "mysql", name: "mysql-connector-java", version: "8.0.33"
+    implementation 'com.cloudinary:cloudinary-http44:1.34.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.0.6'
+    implementation group: 'com.mercadopago', name: 'sdk-java', version: '2.1.11'
+
 }
 
 tasks.named('test') {

@@ -1,6 +1,6 @@
 package com.example.elbuensaborbackend.services.Implementation;
 
-import com.example.elbuensaborbackend.entities.MeasurementUnit;
+import com.example.elbuensaborbackend.models.entities.MeasurementUnit;
 import com.example.elbuensaborbackend.repositories.BaseRepository;
 import com.example.elbuensaborbackend.repositories.MeasurementUnitRepository;
 import com.example.elbuensaborbackend.services.MeasurementUnitService;
@@ -16,5 +16,20 @@ public class MeasurementUnitServiceImpl extends BaseServiceImpl<MeasurementUnit,
 
     public MeasurementUnitServiceImpl(BaseRepository<MeasurementUnit, Long> baseRepository) {
         super(baseRepository);
+    }
+
+    public boolean leave(Long id) throws Exception {
+        try{
+            if(measurementUnitRepository.existsById(id)) {
+                MeasurementUnit existingMeasurementUnit = measurementUnitRepository.findById(id).get();
+                existingMeasurementUnit.setActive(false);
+                measurementUnitRepository.save(existingMeasurementUnit);
+                return true;
+            }else{
+                throw new Exception();
+            }
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 }
