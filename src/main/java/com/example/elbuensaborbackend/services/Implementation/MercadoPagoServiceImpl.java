@@ -17,7 +17,7 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
 
     @PostConstruct
     public void initMPConfig() {
-        MercadoPagoConfig.setAccessToken("TEST-2033417388807626-012011-d4e95fe1e172698e80f06adc5f0a6cd6-660556270");
+        MercadoPagoConfig.setAccessToken("APP_USR-8665333237373017-020618-bb08753bb414539da971acaf95f5582b-1670260025");
     }
 
     public Preference createPreference(MercadoPagoProduct mercadoPagoProduct) throws Exception {
