@@ -28,7 +28,5 @@ Aclaraciones:
 	
 Integrantes:
 	
-	-Francisco Fiore
 	-Lautaro Jofré Molina
-	-Candela Zuñiga
 	-Maximiliano Zuñiga
