@@ -37,20 +37,6 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-      /*  http
-                .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.OPTIONS).permitAll()
-                .requestMatchers("/api/public").permitAll()
-                .requestMatchers("/api/v1/**").permitAll()
-                .requestMatchers("/**").authenticated()
-                .and().cors().configurationSource(corsConfigurationSource())
-                .and().oauth2ResourceServer()
-                .jwt()
-                .decoder(jwtDecoder())
-                .jwtAuthenticationConverter(jwtAuthenticationConverter());
-        return http.build();*/
-
         http
                 .csrf().disable()
                 .cors().and()
